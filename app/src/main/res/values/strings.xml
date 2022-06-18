@@ -10,4 +10,6 @@
     <string name="password_validation">Password Validation</string>
     <string name="sign_up">Sign Up</string>
     <string name="log_in">Log In</string>
+    <string name="server">Server</string>
+    <string name="add_contact">Add Contact</string>
 </resources>

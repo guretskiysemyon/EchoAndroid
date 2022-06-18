@@ -1,6 +1,7 @@
 package com.echoexp4.Database.Dao;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -41,7 +42,7 @@ public interface AllDao {
     void insertUser(User user);
 
     @Transaction
-    @Update
+    @Insert
     void addContact(Contact contact);
 
     @Transaction

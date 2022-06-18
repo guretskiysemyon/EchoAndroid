@@ -8,17 +8,30 @@
     android:background="@color/panel_color"
     tools:context=".Activities.MainActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ImageBack"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfile"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginLeft="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:background="@drawable/background_icon"
-        android:padding="@dimen/_6sdp"
-        android:src="@drawable/ic_back"
+        android:scaleType="center"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="@dimen/_8sdp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageSignOut"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:background="@drawable/background_icon"
+        android:padding="@dimen/_6sdp"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:tint="@color/white"
         />
@@ -30,10 +43,10 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/ImageBack"
+        app:layout_constraintBottom_toBottomOf="@id/imageProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ImageBack"
+        app:layout_constraintTop_toTopOf="@id/imageProfile"
         />
 
     <FrameLayout
@@ -42,10 +55,10 @@
         android:layout_marginTop="@dimen/_16sdp"
         android:background="@drawable/background_content_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ImageBack">
+        app:layout_constraintTop_toBottomOf="@+id/imageProfile">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/userRecyclerView"
+            android:id="@+id/ContactRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
@@ -75,6 +88,18 @@
 
 
     </FrameLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addContactButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_24sdp"
+        android:layout_marginBottom="@dimen/_24sdp"
+        android:backgroundTint="@color/burgundy"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_add"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

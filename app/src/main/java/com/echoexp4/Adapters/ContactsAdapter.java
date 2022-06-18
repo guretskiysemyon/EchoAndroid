@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.UserListener;
+import com.echoexp4.ViewModels.ContactView;
 import com.echoexp4.databinding.ContactItemBinding;
 
 import java.util.Base64;
@@ -20,11 +21,10 @@ import java.util.List;
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.UserViewHolder> {
 
 
-    private final List<Contact> contacts;
+    private List<Contact> contacts;
     private final UserListener userListener;
 
-    public ContactsAdapter(List<Contact> contacts, UserListener ul) {
-        this.contacts = contacts;
+    public ContactsAdapter(UserListener ul) {
         this.userListener = ul;
     }
 
@@ -37,6 +37,10 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.UserVi
                 false
         );
         return new UserViewHolder(itemBinding);
+    }
+    public void setContacts(List<Contact> contacts){
+        this.contacts = contacts;
+        notifyDataSetChanged();
     }
 
     @Override

@@ -13,5 +13,4 @@ public class ConnectionActivity extends AppCompatActivity {
         finish();
     }
 
-
 }
