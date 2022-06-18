@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">EchoExp2</string>
+    <string name="contacts">Contacts</string>
+    <string name="type_message">Type message</string>
+    <string name="welcome_to_echo">Welcome To Echo</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="password_validation">Password Validation</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+</resources>
