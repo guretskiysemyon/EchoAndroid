@@ -3,6 +3,7 @@ package com.echoexp4.Database.Dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
@@ -30,6 +31,15 @@ public interface AllDao {
     List<Message> allMessages(String id);
 
     @Transaction
+    @Delete
+    void deleteContact(Contact contact);
+
+    @Transaction
+    @Update
+    void changeContact(Contact contact);
+
+
+    @Transaction
     @Insert
     void insertContacts(List<Contact> contacts);
 
@@ -46,7 +56,7 @@ public interface AllDao {
     void addContact(Contact contact);
 
     @Transaction
-    @Update
+    @Insert
     void addMessage(Message message);
 
 

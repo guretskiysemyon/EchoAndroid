@@ -38,6 +38,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.UserVi
         );
         return new UserViewHolder(itemBinding);
     }
+
     public void setContacts(List<Contact> contacts){
         this.contacts = contacts;
         notifyDataSetChanged();

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.databinding.ItemContainerReceivedMessagesBinding;
 import com.echoexp4.databinding.ItemContainerSentMessageBinding;
@@ -15,25 +16,21 @@ import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private final List<Message> chatMessages;
+    private List<Message> chatMessages;
 
-
-    public ChatAdapter(List<Message> chatMessages) {
-        this.chatMessages = chatMessages;
-    }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 1)
-            return new SentMessageViewHolder(
-                    ItemContainerSentMessageBinding.inflate(
-                            LayoutInflater.from(parent.getContext()),
-                            parent,
-                            false)
-            );
-        return new ReceivedMessageViewHolder(
+            return new ReceivedMessageViewHolder(
                 ItemContainerReceivedMessagesBinding.inflate(
+                        LayoutInflater.from(parent.getContext()),
+                        parent,
+                        false)
+        );
+        return new SentMessageViewHolder(
+                ItemContainerSentMessageBinding.inflate(
                         LayoutInflater.from(parent.getContext()),
                         parent,
                         false)
@@ -47,6 +44,12 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         } else {
             ((ReceivedMessageViewHolder) holder).setData(chatMessages.get(position));
         }
+    }
+
+
+    public void setChatMessages(List<Message> messages){
+        this.chatMessages = messages;
+        notifyDataSetChanged();
     }
 
     @Override

@@ -3,14 +3,19 @@ package com.echoexp4.Activities;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 
 import com.echoexp4.Adapters.ChatAdapter;
 import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
+import com.echoexp4.ViewModels.ContactView;
+import com.echoexp4.ViewModels.MessageViewModel;
 import com.echoexp4.databinding.ActivityChatBinding;
 import com.echoexp4.utilities.Constants;
 
@@ -25,8 +30,9 @@ public class ChatActivity extends AppCompatActivity {
 
     private ActivityChatBinding binding;
     private Contact contact;
-    private List<Message> chatMessages;
+    //private List<Message> chatMessages;
     private ChatAdapter adapter;
+    private MessageViewModel viewModel;
     private AppDB db;
 
     @Override
@@ -36,15 +42,31 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setListeners();
         loadReceiverData();
+        adapter = new ChatAdapter();
+        viewModel = new ViewModelProvider(this).get(MessageViewModel.class);
+        //viewModel = new  ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ContactView.class);
+        viewModel.setMessages(this.contact);
+        viewModel.getAllMessages().observe( this , new Observer<List<Message>>() {
+            @Override
+            public void onChanged(List<Message> messages) {
+                adapter.setChatMessages(messages);
+            }
+        });
+
         init();
        // listenMessages();
     }
 
     private void init(){
-        chatMessages = new ArrayList<>();
-        adapter = new ChatAdapter(chatMessages);
-        binding.chatRecyclerView.setAdapter(adapter);
+        List<Message> messages = viewModel.getAllMessages().getValue();
+        if (messages.size() > 0) {
+            adapter.setChatMessages(messages);
+            binding.chatRecyclerView.setAdapter(adapter);
+            binding.chatRecyclerView.setVisibility(View.VISIBLE);
+        }
+        binding.progressBar.setVisibility(View.INVISIBLE);
     }
+
 
 
     private void sendMessage(){
@@ -52,7 +74,7 @@ public class ChatActivity extends AppCompatActivity {
         String content = binding.inputMessage.getText().toString();
         String date = new Date().toString();
         Message message = new Message(content,date,true,contact);
-        db.allDao().addMessage(message);
+        viewModel.addMessage(message);
         binding.inputMessage.setText(null);
     }
 
@@ -115,8 +137,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-    private void
-    loadReceiverData(){
+    private void loadReceiverData(){
         contact = (Contact) getIntent().getSerializableExtra(Constants.KEY_CONTACT);
         binding.textName.setText(contact.getName());
 
@@ -124,7 +145,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void setListeners(){
         binding.ImageBack.setOnClickListener(e-> onBackPressed());
-       // binding.layoutSend.setOnClickListener(e-> sendMessage());
+        binding.layoutSend.setOnClickListener(e-> sendMessage());
     }
 
     private String getReadableDate(Date date){

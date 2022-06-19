@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity implements UserListener {
 
     private void setListeners(){
         //binding.ImageBack.setOnClickListener(e -> onBackPressed());
-        binding.addContactButton.setOnClickListener(e ->
-                startActivity(new Intent(getApplicationContext(), AddContactActivity.class)));
+
         binding.addContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements UserListener {
                 startActivityForResult(intent, 1);
             }
         });
+
+
     }
 
     @Override

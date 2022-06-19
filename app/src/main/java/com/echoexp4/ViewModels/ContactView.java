@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Repositories.AppRepository;
@@ -30,7 +29,7 @@ public class ContactView  extends AndroidViewModel {
 
 
     public void insertContact(Contact contact){
-        repository.insertContact(contact);
+        repository.insertContactToRoom(contact);
     }
 
 
