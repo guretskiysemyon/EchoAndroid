@@ -60,12 +60,6 @@ public class SignUpActivity extends ConnectionActivity {
         });
     }
 
-
-    private void showToast(String message){
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-
-    }
-
     private void signUp(){
         loading(true);
         repository.SignUp(new SignUpRequest(

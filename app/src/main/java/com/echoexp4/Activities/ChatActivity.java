@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -69,7 +70,9 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-    private void sendMessage(){
+    private void sendMessage() throws InterruptedException {
+
+        //TODO: change contact name
         String contact = this.contact.getId();
         String content = binding.inputMessage.getText().toString();
         String date = new Date().toString();
@@ -143,12 +146,20 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private void setListeners(){
-        binding.ImageBack.setOnClickListener(e-> onBackPressed());
-        binding.layoutSend.setOnClickListener(e-> sendMessage());
+    private void showToast(String message){
+        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
     }
 
-    private String getReadableDate(Date date){
-        return new SimpleDateFormat("MMMM dd, yyyy - hh:mm a", Locale.getDefault()).format(date);
+    private void setListeners(){
+        binding.ImageBack.setOnClickListener(e-> onBackPressed());
+        binding.layoutSend.setOnClickListener(e-> {
+            try {
+                sendMessage();
+            } catch (InterruptedException ex) {
+                showToast("Error");
+            }
+        });
     }
+
+
 }

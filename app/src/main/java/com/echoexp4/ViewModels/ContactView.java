@@ -6,18 +6,18 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.echoexp4.Database.Entities.Contact;
-import com.echoexp4.Repositories.AppRepository;
+import com.echoexp4.Repositories.ContactRepository;
 
 import java.util.List;
 
 public class ContactView  extends AndroidViewModel {
-    private AppRepository repository;
+    private ContactRepository repository;
     private LiveData<List<Contact>> contacts;
 
 
     public ContactView(Application application){
         super(application);
-        repository = new AppRepository(application);
+        repository = new ContactRepository(application);
         contacts = repository.getAllContacts();
         //allNotes = repository.getAllNotes();
     }

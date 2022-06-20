@@ -1,6 +1,7 @@
 package com.echoexp4.Activities;
 
 import android.content.Intent;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,4 +14,8 @@ public class ConnectionActivity extends AppCompatActivity {
         finish();
     }
 
+
+    protected void showToast(String message){
+        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+    }
 }

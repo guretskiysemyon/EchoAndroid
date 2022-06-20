@@ -6,8 +6,9 @@ import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.Database.Entities.User;
 import com.echoexp4.LogInRequest;
-import com.echoexp4.Repositories.AppRepository;
+import com.echoexp4.Repositories.ContactRepository;
 import com.echoexp4.Repositories.ConnectionRepository;
+import com.echoexp4.Repositories.MessagesRepository;
 import com.echoexp4.SignUpRequest;
 
 import java.io.IOException;
@@ -26,7 +27,8 @@ public class UserAPI extends Thread {
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;
     ConnectionRepository ConnectionRepository;
-    AppRepository appRepository;
+    ContactRepository contactRepository;
+    MessagesRepository messagesRepository;
     private String token;
 
     public UserAPI() {
@@ -43,8 +45,12 @@ public class UserAPI extends Thread {
         this.ConnectionRepository = connectionrepository;
     }
 
-    public void setAppRepository(AppRepository appRepository) {
-        this.appRepository = appRepository;
+    public void setContactRepository(ContactRepository contactRepository) {
+        this.contactRepository = contactRepository;
+    }
+
+    public void setMessagesRepository(MessagesRepository messagesRepository) {
+        this.messagesRepository = messagesRepository;
     }
 
     //TODO: Delete
@@ -126,7 +132,7 @@ public class UserAPI extends Thread {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful())
-                    appRepository.insertContactToRoom(contact);
+                    contactRepository.insertContactToRoom(contact);
             }
 
             @Override
@@ -140,7 +146,7 @@ public class UserAPI extends Thread {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                appRepository.deleteInRoom(contact);
+                contactRepository.deleteInRoom(contact);
             }
             @Override
             public void onFailure(Call<Void> call, Throwable t) {}
@@ -154,7 +160,7 @@ public class UserAPI extends Thread {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                appRepository.changeContactInRoom(contact);
+                contactRepository.changeContactInRoom(contact);
             }
 
             @Override

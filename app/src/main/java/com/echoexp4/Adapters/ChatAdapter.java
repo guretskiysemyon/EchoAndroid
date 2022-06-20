@@ -12,7 +12,10 @@ import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.databinding.ItemContainerReceivedMessagesBinding;
 import com.echoexp4.databinding.ItemContainerSentMessageBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -51,6 +54,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         this.chatMessages = messages;
         notifyDataSetChanged();
     }
+
+
 
     @Override
     public int getItemCount() {

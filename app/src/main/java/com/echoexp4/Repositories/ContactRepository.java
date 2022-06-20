@@ -17,20 +17,18 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AppRepository {
+public class ContactRepository {
     private AllDao dao;
     private UserAPI api;
     private ContactListData contacts;
-    private MessageListData messages;
 
-    public AppRepository(Application application) {
+    public ContactRepository(Application application) {
         AppDB db = AppDB.getDbInstance(application.getApplicationContext());
         this.dao = db.allDao();
         this.api = new UserAPI();
-        api.setAppRepository(this);
+        api.setContactRepository(this);
         contacts = new ContactListData();
         contacts.setValue(dao.allContacts());
-        messages = new MessageListData();
 
     }
 
@@ -59,29 +57,9 @@ public class AppRepository {
     }
 
     public LiveData<List<Contact>> getAllContacts(){
-        //contacts.setValue(dao.allContacts());
         return contacts;
     }
 
-    public LiveData<List<Message>> getAllMessages(Contact contact) {
-        return messages;
-    }
-
-
-    public void setMessagesData(Contact contact){
-        this.messages.setContactId(contact.getId());
-        this.messages.setValue(dao.allMessages(contact.getId()));
-    }
-
-    /////////////////////////////////////////////////////////
-
-    public void addMessage(Message message) {
-        api.addMessage(message);
-    }
-
-    public void addMessageToRoom(Message message){
-        new InsertMessageAsyncTask(dao).execute(message);
-    }
 
 
 
@@ -107,34 +85,7 @@ public class AppRepository {
         }
     }
 
-    class MessageListData extends MutableLiveData<List<Message>> {
-        private String contactId;
-
-        public MessageListData() {
-            super();
-            setValue(new ArrayList<Message>());
-        }
-
-        public void setContactId(String contactId) {
-            this.contactId = contactId;
-        }
-
-        @Override
-        protected void onActive() {
-            super.onActive();
-            //
-            new Thread(() -> {
-                messages.postValue(dao.allMessages(contactId));
-            }).start();
-
-            api.getMessages(contactId, this);
-        }
-    }
-
-
     ////////////////////////////////////////////////////////////
-
-
 
     private static class InsertContactAsyncTask extends AsyncTask<Contact, Void, Void> {
         private AllDao dao;
@@ -178,19 +129,6 @@ public class AppRepository {
         }
     }
 
-    private static class InsertMessageAsyncTask extends AsyncTask<Message, Void, Void> {
-        private AllDao dao;
-
-        protected InsertMessageAsyncTask(AllDao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(Message... messages) {
-            dao.addMessage(messages[0]);
-            return null;
-        }
-    }
 
 
 }

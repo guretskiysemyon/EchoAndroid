@@ -53,9 +53,7 @@ public class LogInActivity extends ConnectionActivity {
         binding.SigUp.setVisibility(View.VISIBLE);
     }
 
-    private void showToast(String message){
-        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
-    }
+
 
     private Boolean isValidData(){
         if (binding.InputUsername.getText().toString().trim().isEmpty()){
