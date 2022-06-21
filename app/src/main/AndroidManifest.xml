@@ -25,21 +25,22 @@
         android:theme="@style/Theme.EchoExp4"
         tools:targetApi="31">
         <activity
-            android:name=".LandscapeActivity"
-            android:exported="false" />
+            android:name=".Activities.LandscapeActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="sensor"
+            />
         <activity
             android:name=".Activities.AddContactActivity"
             android:exported="true" />
         <activity
             android:name=".Activities.ChatActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="sensor"/>
         <activity
             android:name=".Activities.MainActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize"></activity>
-        <activity
-            android:name=".Activities.LogInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -47,6 +48,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.LogInActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+
         </activity>
         <activity
             android:name=".Activities.SignUpActivity"

@@ -1,6 +1,7 @@
 package com.echoexp4.Activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -38,12 +39,7 @@ public class MainActivity extends AppCompatActivity implements UserListener {
         viewModel = new ViewModelProvider(this).get(ContactView.class);
         //viewModel = new  ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ContactView.class);
 
-        viewModel.getAllContacts().observe( this , new Observer<List<Contact>>() {
-            @Override
-            public void onChanged(List<Contact> contacts) {
-                adapter.setContacts(contacts);
-            }
-        });
+        viewModel.getAllContacts().observe( this , contacts -> adapter.setContacts(contacts));
         getContacts();
         setListeners();
 
@@ -52,12 +48,9 @@ public class MainActivity extends AppCompatActivity implements UserListener {
     private void setListeners(){
         //binding.ImageBack.setOnClickListener(e -> onBackPressed());
 
-        binding.addContactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
-                startActivityForResult(intent, 1);
-            }
+        binding.addContactButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
+            startActivityForResult(intent, 1);
         });
 
 
@@ -110,9 +103,17 @@ public class MainActivity extends AppCompatActivity implements UserListener {
 
     @Override
     public void onUserClicked(Contact contact) {
-        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-        intent.putExtra(Constants.KEY_CONTACT, contact);
+        int orientation = getResources().getConfiguration().orientation;
+        Intent intent;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            intent = new Intent(getApplicationContext(), LandscapeActivity.class);
+            intent.putExtra(Constants.KEY_CONTACT, contact);
+        }else {
+            intent = new Intent(getApplicationContext(), ChatActivity.class);
+            intent.putExtra(Constants.KEY_CONTACT, contact);
+        }
         startActivity(intent);
+        finish();
     }
 
 }
