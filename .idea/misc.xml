@@ -9,6 +9,7 @@
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_icon.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_image.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_input.xml" value="0.1" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_received_message.xml" value="0.181" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_sent_message.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout-land/land_activity_layout.xml" value="0.264" />
@@ -16,7 +17,7 @@
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_add_contact2.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_chat.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_landscape.xml" value="0.25" />
-        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_log_in.xml" value="0.25" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_log_in.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_users.xml" value="0.1037037037037037" />

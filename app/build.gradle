@@ -62,7 +62,7 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
     //Firebase
-    implementation 'com.google.firebase:firebase-messaging:23.0.5'
+    implementation 'com.google.firebase:firebase-messaging:20.1.0'
     implementation 'com.google.firebase:firebase-core:21.0.0'
 
 

@@ -1,17 +1,9 @@
 package com.echoexp4.api;
 
-import androidx.lifecycle.MutableLiveData;
-
-import com.echoexp4.Database.Entities.Contact;
-import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.Database.Entities.User;
-import com.echoexp4.Requests.InvitationRequest;
-import com.echoexp4.Requests.LogInRequest;
-import com.echoexp4.Repositories.ContactRepository;
 import com.echoexp4.Repositories.ConnectionRepository;
-import com.echoexp4.Repositories.MessagesRepository;
+import com.echoexp4.Requests.LogInRequest;
 import com.echoexp4.Requests.SignUpRequest;
-import com.echoexp4.Requests.TransferRequest;
 
 import java.io.IOException;
 import java.util.List;
