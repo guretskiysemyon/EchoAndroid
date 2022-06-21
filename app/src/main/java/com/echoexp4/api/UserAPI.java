@@ -5,11 +5,13 @@ import androidx.lifecycle.MutableLiveData;
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.Database.Entities.User;
-import com.echoexp4.LogInRequest;
+import com.echoexp4.Requests.InvitationRequest;
+import com.echoexp4.Requests.LogInRequest;
 import com.echoexp4.Repositories.ContactRepository;
 import com.echoexp4.Repositories.ConnectionRepository;
 import com.echoexp4.Repositories.MessagesRepository;
-import com.echoexp4.SignUpRequest;
+import com.echoexp4.Requests.SignUpRequest;
+import com.echoexp4.Requests.TransferRequest;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,12 +28,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class UserAPI extends Thread {
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;
-    ConnectionRepository ConnectionRepository;
-    ContactRepository contactRepository;
-    MessagesRepository messagesRepository;
+    ConnectionRepository repository;
     private String token;
 
-    public UserAPI() {
+    public UserAPI(ConnectionRepository repository) {
+        this.repository = repository;
         token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCYXoiLCJqdGkiOiIyOWY4NTgzZi02ODA1LTQ5YTAtYjRiNC02YTMyY2JkNmE0ZGIiLCJpYXQiOiIxOC4wNi4yMDIyIDE2OjMyOjE2IiwiVXNlcklkIjoiS2FyaW5hIiwiZXhwIjoxNjU1NjQxOTM2LCJpc3MiOiJFY2hvIiwiYXVkIjoiRWNobyJ9.Y9yp8a7dRwoKRqueUjHWx0_6YXe_Nv2ZNAF-NJ-FD1I";
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:7099/api/")
@@ -41,17 +42,6 @@ public class UserAPI extends Thread {
         webServiceAPI = retrofit.create(WebServiceAPI.class);
     }
 
-    public void setConnectionRepository(ConnectionRepository connectionrepository) {
-        this.ConnectionRepository = connectionrepository;
-    }
-
-    public void setContactRepository(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
-    }
-
-    public void setMessagesRepository(MessagesRepository messagesRepository) {
-        this.messagesRepository = messagesRepository;
-    }
 
     //TODO: Delete
     public void getAll() {
@@ -69,6 +59,9 @@ public class UserAPI extends Thread {
             }
         });
     }
+
+
+
     //TODO: get data about user
     public void logIn(LogInRequest request) {
         Call<ResponseBody> call = webServiceAPI.login(request);
@@ -78,7 +71,8 @@ public class UserAPI extends Thread {
                 try {
                     token = response.body().string();
                     User user  = new User(request.username, request.username, request.password,null, token);
-                    ConnectionRepository.setUser(user, token);
+                    user.setServer("localhost:7099");
+                    repository.setUser(user, token);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -89,6 +83,9 @@ public class UserAPI extends Thread {
             }
         });
     }
+
+
+
 
     public void SignUp(SignUpRequest request) {
         Call<ResponseBody> call = webServiceAPI.signup(request);
@@ -98,11 +95,10 @@ public class UserAPI extends Thread {
                 try {
                     token = response.body().string();
                     User user  = new User(request.username, request.name, request.password,request.image, token);
-                    ConnectionRepository.setUser(user, token);
+                    repository.setUser(user, token);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
@@ -111,90 +107,11 @@ public class UserAPI extends Thread {
         });
     }
 
-    public void getContacts(MutableLiveData<List<Contact>> contacts)  {
-        String tkn = "Bearer " + token;
-        Call<List<Contact>> call = webServiceAPI.getContacts(tkn);
-        call.enqueue(new Callback<List<Contact>>() {
-            @Override
-            public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                contacts.setValue(response.body());
-            }
-            @Override
-            public void onFailure(Call<List<Contact>> call, Throwable t) {
-            }
-        });
-    }
-
-    public void addContact(Contact contact) {
-        String tkn = "Bearer " + token;
-        Call<Void> call = webServiceAPI.addContact(tkn, contact);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful())
-                    contactRepository.insertContactToRoom(contact);
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {}
-        });
-    }
-
-    public void deleteContact(Contact contact) {
-        String tkn = "Bearer " + token;
-        Call<Void> call = webServiceAPI.deleteContact(contact.getId(),tkn);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                contactRepository.deleteInRoom(contact);
-            }
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {}
-        });
-    }
 
 
-    public void changeContact(Contact contact) {
-        String tkn = "Bearer " + token;
-        Call<Void> call = webServiceAPI.changeContact(contact.getId(),tkn, contact);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                contactRepository.changeContactInRoom(contact);
-            }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {}
-        });
-    }
 
-    public void getMessages(String contact, MutableLiveData<List<Message>> messages)  {
-        String tkn = "Bearer " + token;
-        Call<List<Message>> call = webServiceAPI.getMessages(contact, tkn);
-        call.enqueue(new Callback<List<Message>>() {
-            @Override
-            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                messages.setValue(response.body());
-            }
-            @Override
-            public void onFailure(Call<List<Message>> call, Throwable t) {
-            }
-        });
-    }
 
-    public void addMessage( Message msg) {
-        String tkn = "Bearer " + token;
-        Call<Void> call = webServiceAPI.addMessage(msg.getContactId(), tkn, msg);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                Integer s = response.code();
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {}
-        });
-    }
 
 
 }

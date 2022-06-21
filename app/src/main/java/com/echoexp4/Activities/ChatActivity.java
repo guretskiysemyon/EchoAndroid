@@ -21,6 +21,8 @@ import com.echoexp4.databinding.ActivityChatBinding;
 import com.echoexp4.utilities.Constants;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
@@ -60,7 +62,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void init(){
         List<Message> messages = viewModel.getAllMessages().getValue();
-        if (messages.size() > 0) {
+        if (messages != null) {
             adapter.setChatMessages(messages);
             binding.chatRecyclerView.setAdapter(adapter);
             binding.chatRecyclerView.setVisibility(View.VISIBLE);
@@ -75,7 +77,9 @@ public class ChatActivity extends AppCompatActivity {
         //TODO: change contact name
         String contact = this.contact.getId();
         String content = binding.inputMessage.getText().toString();
-        String date = new Date().toString();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date now = new Date();
+        String date = now.toString();
         Message message = new Message(content,date,true,contact);
         viewModel.addMessage(message);
         binding.inputMessage.setText(null);

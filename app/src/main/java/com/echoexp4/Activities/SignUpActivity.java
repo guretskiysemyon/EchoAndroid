@@ -7,22 +7,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.echoexp4.Repositories.ConnectionRepository;
-import com.echoexp4.SignUpRequest;
+import com.echoexp4.Requests.SignUpRequest;
 import com.echoexp4.databinding.ActivitySignUpBinding;
-import com.echoexp4.utilities.Constants;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Base64;
-import java.util.HashMap;
 
 public class SignUpActivity extends ConnectionActivity {
     private ActivitySignUpBinding binding;

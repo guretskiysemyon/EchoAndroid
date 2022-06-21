@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Database(entities = {Contact.class, Message.class, User.class}, version  = 8)
+@Database(entities = {Contact.class, Message.class, User.class}, version  = 11)
 public abstract class AppDB extends RoomDatabase {
 
     private static AppDB INSTANCE;

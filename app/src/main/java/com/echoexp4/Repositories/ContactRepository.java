@@ -1,7 +1,6 @@
 package com.echoexp4.Repositories;
 
 import android.app.Application;
-import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
@@ -10,42 +9,47 @@ import androidx.lifecycle.MutableLiveData;
 import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Dao.AllDao;
 import com.echoexp4.Database.Entities.Contact;
-import com.echoexp4.Database.Entities.Message;
-import com.echoexp4.api.UserAPI;
+import com.echoexp4.Requests.InvitationRequest;
+import com.echoexp4.api.ContactAPI;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ContactRepository {
     private AllDao dao;
-    private UserAPI api;
+    private ContactAPI api;
     private ContactListData contacts;
 
     public ContactRepository(Application application) {
         AppDB db = AppDB.getDbInstance(application.getApplicationContext());
         this.dao = db.allDao();
-        this.api = new UserAPI();
-        api.setContactRepository(this);
+        this.api = new ContactAPI(this, dao.connectedUser().getToken());
         contacts = new ContactListData();
-        contacts.setValue(dao.allContacts());
+       // contacts.setValue(dao.allContacts());
 
     }
 
 
     public void insertContact(Contact contact){
-        api.addContact(contact);
+        InvitationRequest request = new InvitationRequest(
+                dao.connectedUser().getUsername(),
+                contact.getId(),
+                dao.connectedUser().getServer()
+        );
+        api.sendInvitations(contact,request, contact.getServer());
     }
 
     public void insertContactToRoom(Contact contact){
-        new InsertContactAsyncTask(dao).execute(contact);
+        dao.addContact(contact);
+        contacts.setValue(dao.allContacts());
     }
 
     public void deleteContact(Contact contact) {
         api.deleteContact(contact);
     }
+
     public void deleteInRoom(Contact contact){
-        new DeleteContactAsyncTask(dao).execute(contact);
+       dao.deleteContact(contact);
     }
 
     public void changeContact(Contact contact) {
@@ -53,8 +57,14 @@ public class ContactRepository {
     }
 
     public void changeContactInRoom(Contact contact) {
-       new UpdateContactAsyncTask(dao).execute(contact);
+       dao.changeContact(contact);
     }
+
+    public void insertContacts(List<Contact> contacts){
+        dao.insertContacts(contacts);
+        this.contacts.setValue(dao.allContacts());
+    }
+
 
     public LiveData<List<Contact>> getAllContacts(){
         return contacts;
@@ -82,52 +92,13 @@ public class ContactRepository {
 
             api.getContacts(this);
 
+
         }
     }
 
     ////////////////////////////////////////////////////////////
 
-    private static class InsertContactAsyncTask extends AsyncTask<Contact, Void, Void> {
-        private AllDao dao;
 
-        protected InsertContactAsyncTask(AllDao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(Contact... contacts) {
-            dao.addContact(contacts[0]);
-            return null;
-        }
-    }
-
-    private static class DeleteContactAsyncTask extends AsyncTask<Contact, Void, Void> {
-        private AllDao dao;
-
-        protected DeleteContactAsyncTask(AllDao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(Contact... contacts) {
-            dao.deleteContact(contacts[0]);
-            return null;
-        }
-    }
-
-    private static class UpdateContactAsyncTask extends AsyncTask<Contact, Void, Void> {
-        private AllDao dao;
-
-        protected UpdateContactAsyncTask(AllDao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(Contact... contacts) {
-            dao.changeContact(contacts[0]);
-            return null;
-        }
-    }
 
 
 

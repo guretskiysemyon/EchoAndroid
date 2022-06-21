@@ -7,19 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.databinding.ItemContainerReceivedMessagesBinding;
 import com.echoexp4.databinding.ItemContainerSentMessageBinding;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<Message> chatMessages;
+    private static final int VIEW_TYPE_SENT = 0;
+    private static final int VIEW_TYPE_RECEIVED = 1;
 
 
     @NonNull
@@ -49,6 +47,13 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (chatMessages.get(position).isSent())
+            return VIEW_TYPE_SENT;
+        return VIEW_TYPE_RECEIVED;
+    }
+
 
     public void setChatMessages(List<Message> messages){
         this.chatMessages = messages;
@@ -73,7 +78,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
 
         void setData(Message chatMessage){
-            String message = chatMessage.getContent()+ "\n" + chatMessage.getCrated();
+            String message = chatMessage.getContent()+ "\n" + chatMessage.getCreated();
             binding.textMessage.setText(message);
         }
     }
@@ -88,7 +93,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
 
         void setData(Message chatMessage){
-            String message = chatMessage.getContent()+ "\n" + chatMessage.getCrated();
+            String message = chatMessage.getContent()+ "\n" + chatMessage.getCreated();
             binding.textMessage.setText(message);
         }
     }

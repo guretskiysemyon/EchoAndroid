@@ -3,10 +3,9 @@ package com.echoexp4.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.echoexp4.Repositories.ConnectionRepository;
-import com.echoexp4.LogInRequest;
+import com.echoexp4.Requests.LogInRequest;
 import com.echoexp4.databinding.ActivityLogInBinding;
 
 

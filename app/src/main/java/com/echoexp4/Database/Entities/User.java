@@ -13,9 +13,19 @@ public class User {
     private String Password;
     private String Image;
     private String Token;
+    private String Server;
 
 
     public User() {
+        this.Server = "localhost:7099";
+    }
+
+    public String getServer() {
+        return Server;
+    }
+
+    public void setServer(String server) {
+        Server = server;
     }
 
     public User(@NonNull String username, String nickname, String password, String image, String token) {

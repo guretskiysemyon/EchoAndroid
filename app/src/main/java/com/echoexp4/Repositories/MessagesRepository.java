@@ -10,6 +10,8 @@ import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Dao.AllDao;
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
+import com.echoexp4.Requests.TransferRequest;
+import com.echoexp4.api.MessageAPI;
 import com.echoexp4.api.UserAPI;
 
 import java.util.ArrayList;
@@ -18,18 +20,18 @@ import java.util.List;
 public class MessagesRepository {
     private MessageListData messages;
     private AllDao dao;
-    private UserAPI api;
-    private String contactId;
+    private MessageAPI api;
+    private Contact contact;
 
 
-    public MessagesRepository(Application application, String contactId){
+    public MessagesRepository(Application application, Contact contact){
         AppDB db = AppDB.getDbInstance(application.getApplicationContext());
         this.dao = db.allDao();
-        this.api = new UserAPI();
-        api.setMessagesRepository(this);
-        this.contactId = contactId;
+        this.api = new MessageAPI(this, dao.connectedUser().getToken());
+        //api.setMessagesRepository(this);
+        this.contact = contact;
         messages = new MessageListData();
-        messages.setValue(dao.allMessages(this.contactId));
+        messages.setValue(dao.allMessages(this.contact.getId()));
     }
 
 
@@ -37,20 +39,32 @@ public class MessagesRepository {
         return messages;
     }
 
-
+/*
     public void setMessagesData(Contact contact){
-        this.contactId = contact.getId();
+        this.contact = contact.getId();
         this.messages.setValue(dao.allMessages(contact.getId()));
     }
 
+ */
+
     public void addMessage(Message message) {
-        api.addMessage(message);
+        TransferRequest request = new TransferRequest(
+                dao.connectedUser().getUsername(),
+                contact.getId(),
+                message.getContent());
+        api.sendTransfer(message,request, contact.getServer());
     }
 
-    public void addMessageToRoom(Message message) throws InterruptedException {
-      dao.addMessage(message);
+
+    public void addMessageToRoom(Message message) {
+        dao.addMessage(message);
       //new InsertMessageAsyncTask(dao).execute(message);
-       messages.setValue(dao.allMessages(this.contactId));
+       messages.setValue(dao.allMessages(this.contact.getId()));
+    }
+
+    public void insertMessages(List<Message> messages){
+        dao.insertMessages(messages);
+        this.messages.setValue(dao.allMessages(contact.getId()));
     }
 
 /*
@@ -81,11 +95,11 @@ public class MessagesRepository {
             super.onActive();
             //
             new Thread(() -> {
-                List<Message> mes = dao.allMessages(contactId);
+                List<Message> mes = dao.allMessages(contact.getId());
                 messages.postValue(mes);
             }).start();
 
-            api.getMessages(contactId, this);
+            api.getMessages(contact.getId(), this);
         }
     }
 }

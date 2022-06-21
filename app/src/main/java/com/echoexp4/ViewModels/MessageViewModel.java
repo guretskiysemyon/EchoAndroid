@@ -27,12 +27,12 @@ public class MessageViewModel extends AndroidViewModel {
     }
 
     public void setMessages(Contact contact){
-        this.repo = new MessagesRepository(getApplication(), contact.getId());
+        this.repo = new MessagesRepository(getApplication(), contact);
         messages = repo.getAllMessages();
 
     }
     public void addMessage(Message message) throws InterruptedException {
-       repo.addMessageToRoom(message);
+       repo.addMessage(message);
     }
 
 }

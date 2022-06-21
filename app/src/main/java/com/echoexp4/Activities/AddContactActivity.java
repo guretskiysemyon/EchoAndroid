@@ -46,7 +46,6 @@ public class AddContactActivity extends AppCompatActivity {
         data.putExtra("Username", username);
         data.putExtra("Name", name);
         data.putExtra("Server", server);
-
         setResult(RESULT_OK, data);
         finish();
     }

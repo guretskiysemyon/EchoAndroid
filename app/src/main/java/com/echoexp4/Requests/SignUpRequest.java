@@ -1,4 +1,4 @@
-package com.echoexp4;
+package com.echoexp4.Requests;
 
 public class SignUpRequest {
     public String username;

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements UserListener {
 
         this.adapter = new ContactsAdapter( this);
 
-       viewModel = new ViewModelProvider(this).get(ContactView.class);
+        viewModel = new ViewModelProvider(this).get(ContactView.class);
         //viewModel = new  ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ContactView.class);
 
         viewModel.getAllContacts().observe( this , new Observer<List<Contact>>() {
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements UserListener {
         AppDB db = AppDB.getDbInstance(getApplicationContext());
         List<Contact> contacts = db.allDao().allContacts();
         loading(false);
-        if(contacts.size() > 0){
+        if(contacts != null){
             binding.ContactRecyclerView.setAdapter(this.adapter);
             binding.ContactRecyclerView.setVisibility(View.VISIBLE);
         } else {

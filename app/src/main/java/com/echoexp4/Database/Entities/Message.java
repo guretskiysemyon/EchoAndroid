@@ -3,35 +3,32 @@ package com.echoexp4.Database.Entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 @Entity(tableName = "Messages")
 public class Message {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String content;
-    private String crated;
+    private String created;
     private boolean sent;
 
-    private String contactId;
+    private String contactID;
 
-    public Message( String content, String crated, boolean sent, String contactId) {
+
+    public Message(String content, String created, boolean sent, String contactID) {
+        this.id = id;
         this.content = content;
-        this.crated = crated;
+        this.created = created;
         this.sent = sent;
-        this.contactId = contactId;
+        this.contactID = contactID;
     }
 
-
-    public String getContactId() {
-        return contactId;
+    public String getContactID() {
+        return contactID;
     }
 
-    public void setContactId(String contactId) {
-        this.contactId = contactId;
+    public void setContactID(String contactID) {
+        this.contactID = contactID;
     }
 
     public int getId() {
@@ -42,8 +39,8 @@ public class Message {
         return content;
     }
 
-    public String getCrated() {
-        return crated;
+    public String getCreated() {
+        return created;
     }
 
     public boolean isSent() {
@@ -58,8 +55,8 @@ public class Message {
         this.content = content;
     }
 
-    public void setCrated(String crated) {
-        this.crated = crated;
+    public void setCreated(String created) {
+        this.created = created;
     }
 
     public void setSent(boolean sent) {

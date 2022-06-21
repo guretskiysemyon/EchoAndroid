@@ -4,8 +4,10 @@ package com.echoexp4.api;
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.Database.Entities.User;
-import com.echoexp4.LogInRequest;
-import com.echoexp4.SignUpRequest;
+import com.echoexp4.Requests.InvitationRequest;
+import com.echoexp4.Requests.LogInRequest;
+import com.echoexp4.Requests.SignUpRequest;
+import com.echoexp4.Requests.TransferRequest;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface WebServiceAPI {
 
@@ -40,9 +43,6 @@ public interface WebServiceAPI {
     @POST("contacts")
     Call<Void> addContact(@Header("Authorization") String authHeader, @Body Contact contact);
 
-    @GET("contacts/{id}")
-    Call<Contact> getContact(@Path("id") String id, @Header("Authorization") String authHeader);
-
     @PUT("contacts/{id}")
     Call<Void> changeContact(@Path("id") String id, @Header("Authorization") String authHeader, @Body Contact contact);
 
@@ -55,13 +55,6 @@ public interface WebServiceAPI {
     @POST("contacts/{contactid}/messages")
     Call<Void> addMessage(@Path("contactid") String contacid, @Header("Authorization") String authHeader, @Body Message message);
 
-    @GET("contacts/{contactid}/messages/{id}")
-    Call<Message> getMessage(@Path("id") String contacid, @Path("id") String id, @Header("Authorization") String authHeader);
 
-    @PUT("contacts/{contactid}/messages/{id}")
-    Call<Void> changeMessage(@Path("id") String contacid, @Path("id") String id, @Header("Authorization") String authHeader, @Body Message message);
-
-    @DELETE("contacts/{contactid}/messages/{id}")
-    Call<Void> deleteMessage(@Path("id") String contacid, @Path("id") String id, @Header("Authorization") String authHeader);
 
 }

@@ -29,7 +29,7 @@ public class ContactView  extends AndroidViewModel {
 
 
     public void insertContact(Contact contact){
-        repository.insertContactToRoom(contact);
+        repository.insertContact(contact);
     }
 
 
