@@ -37,7 +37,7 @@ public class ContactAPI {
 
 
 
-    public void getContacts(MutableLiveData<List<Contact>> contacts)  {
+    public void getContacts()  {
         String tkn = "Bearer " + token;
         Call<List<Contact>> call = webServiceAPI.getContacts(tkn);
         call.enqueue(new Callback<List<Contact>>() {
@@ -45,7 +45,7 @@ public class ContactAPI {
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
                 if (response.isSuccessful()){
                     contactRepository.insertContacts(response.body());
-                    contacts.setValue(response.body());
+                    //contacts.setValue(response.body());
                 }
 
             }

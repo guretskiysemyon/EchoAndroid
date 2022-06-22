@@ -51,7 +51,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.UserVi
 
     @Override
     public int getItemCount() {
-        return contacts.size();
+        if (contacts != null)
+             return contacts.size();
+        return 0;
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder{

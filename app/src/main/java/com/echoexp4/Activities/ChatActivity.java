@@ -62,11 +62,11 @@ public class ChatActivity extends AppCompatActivity {
 
     private void init(){
         List<Message> messages = viewModel.getAllMessages().getValue();
-        if (messages != null) {
+
             adapter.setChatMessages(messages);
             binding.chatRecyclerView.setAdapter(adapter);
             binding.chatRecyclerView.setVisibility(View.VISIBLE);
-        }
+
         binding.progressBar.setVisibility(View.INVISIBLE);
     }
 

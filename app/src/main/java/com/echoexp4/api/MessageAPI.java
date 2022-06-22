@@ -55,7 +55,7 @@ public class MessageAPI {
         });
     }
 
-    public void getMessages(String contact, MutableLiveData<List<Message>> messages)  {
+    public void getMessages(String contact)  {
         String tkn = "Bearer " + token;
         Call<List<Message>> call = webServiceAPI.getMessages(contact, tkn);
         call.enqueue(new Callback<List<Message>>() {
@@ -64,7 +64,7 @@ public class MessageAPI {
                 if (response.isSuccessful()){
                     List<Message> data = addContactId(response.body(), contact);
                     messagesRepository.insertMessages(data);
-                    messages.setValue(data);
+                    //messages.setValue(data);
                 }
             }
             @Override

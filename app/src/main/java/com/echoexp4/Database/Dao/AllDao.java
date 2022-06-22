@@ -24,25 +24,19 @@ public interface AllDao {
     User connectedUser();
 
     @Transaction
+
+   // SELECT * from table ORDER BY entity ASC.
     @Query("SELECT * FROM Contacts")
-    List<Contact> allContacts();
+    LiveData<List<Contact>> allContacts();
 
     @Transaction
     @Query("SELECT * FROM Messages WHERE contactId=:id")
-    List<Message> allMessages(String id);
+    LiveData<List<Message>> allMessages(String id);
 
     @Transaction
     @Query("DELETE FROM CONTACTS")
     void deleteContacts();
 
-
-    @Transaction
-    @Delete
-    void deleteContact(Contact contact);
-
-    @Transaction
-    @Update
-    void changeContact(Contact contact);
 
 
     @Transaction

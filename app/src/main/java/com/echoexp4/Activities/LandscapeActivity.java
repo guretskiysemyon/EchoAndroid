@@ -136,7 +136,7 @@ public class LandscapeActivity extends AppCompatActivity implements UserListener
             String name = data.getStringExtra("Name");
             String server = data.getStringExtra("Server");
 
-            Contact contact = new Contact(username,name,null,null,null, server);
+            Contact contact = new Contact(username,name,null, server);
             viewModel.insertContact(contact);
 
             Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
@@ -159,7 +159,7 @@ public class LandscapeActivity extends AppCompatActivity implements UserListener
     private void getContacts(){
         loading(true);
         AppDB db = AppDB.getDbInstance(getApplicationContext());
-        List<Contact> contacts = db.allDao().allContacts();
+        List<Contact> contacts = db.allDao().allContacts().getValue();
         loading(false);
         if(contacts != null){
             binding.ContactRecyclerView.setAdapter(this.contactAdapter);

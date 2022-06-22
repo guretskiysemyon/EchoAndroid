@@ -20,11 +20,9 @@ public class Contact implements Serializable {
     private String server;
 
 
-    public Contact(@NonNull String id, String name, String last, String lastdate, String image, String server) {
+    public Contact(@NonNull String id, String name, String image, String server) {
         this.id = id;
         this.name = name;
-        this.last = last;
-        this.lastdate = lastdate;
         this.image = image;
         this.server = server;
     }

@@ -1,27 +1,20 @@
 package com.echoexp4.Repositories;
 
 import android.app.Application;
-import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Dao.AllDao;
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
-import com.echoexp4.NotificationListener;
 import com.echoexp4.Requests.TransferRequest;
 import com.echoexp4.api.MessageAPI;
-import com.echoexp4.api.UserAPI;
-import com.echoexp4.firebase.MyService;
-import com.google.firebase.FirebaseApp;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MessagesRepository implements NotificationListener {
-    private MessageListData messages;
+public class MessagesRepository {
+    private LiveData<List<Message>> messages;
     private AllDao dao;
     private MessageAPI api;
     private Contact contact;
@@ -33,13 +26,11 @@ public class MessagesRepository implements NotificationListener {
         this.api = new MessageAPI(this, dao.connectedUser().getToken());
         //api.setMessagesRepository(this);
         this.contact = contact;
-        messages = new MessageListData();
-        messages.setValue(dao.allMessages(this.contact.getId()));
-
+        //messages = new MessageListData();
+        messages = dao.allMessages(this.contact.getId());
+        api.getMessages(this.contact.getId());
 
     }
-
-
 
 
     public LiveData<List<Message>> getAllMessages() {
@@ -66,18 +57,14 @@ public class MessagesRepository implements NotificationListener {
     public void addMessageToRoom(Message message) {
         dao.addMessage(message);
       //new InsertMessageAsyncTask(dao).execute(message);
-       messages.setValue(dao.allMessages(this.contact.getId()));
+      // messages.setValue(dao.allMessages(this.contact.getId()));
     }
 
     public void insertMessages(List<Message> messages){
         dao.insertMessages(messages);
-        this.messages.setValue(dao.allMessages(contact.getId()));
+     //   this.messages.setValue(dao.allMessages(contact.getId()));
     }
 
-    @Override
-    public void pullNotification() {
-        api.getMessages(contact.getId(), messages);
-    }
 
     /*
         private static class InsertMessageAsyncTask extends AsyncTask<Message, Void, Void> {
@@ -95,6 +82,7 @@ public class MessagesRepository implements NotificationListener {
         }
 
     */
+    /*
     class MessageListData extends MutableLiveData<List<Message>> {
 
         public MessageListData() {
@@ -114,4 +102,6 @@ public class MessagesRepository implements NotificationListener {
             api.getMessages(contact.getId(), this);
         }
     }
+
+     */
 }

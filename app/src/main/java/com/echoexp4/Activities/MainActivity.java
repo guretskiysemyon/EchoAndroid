@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity implements UserListener {
         viewModel = new ViewModelProvider(this).get(ContactView.class);
         //viewModel = new  ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ContactView.class);
         binding.imageProfile.setImageBitmap(getUserImage(viewModel.getUser().getImage()));
-        viewModel.getAllContacts().observe( this , contacts -> adapter.setContacts(contacts));
+        viewModel.getAllContacts().observe( this , contacts -> {
+            adapter.setContacts(contacts);
+        });
         getContacts();
         setListeners();
 
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements UserListener {
             String name = data.getStringExtra("Name");
             String server = data.getStringExtra("Server");
 
-            Contact contact = new Contact(username,name,null,null,null, server);
+            Contact contact = new Contact(username,name,null, server);
             viewModel.insertContact(contact);
 
             Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
@@ -104,14 +106,12 @@ public class MainActivity extends AppCompatActivity implements UserListener {
     private void getContacts(){
         loading(true);
         AppDB db = AppDB.getDbInstance(getApplicationContext());
-        List<Contact> contacts = db.allDao().allContacts();
+        List<Contact> contacts = db.allDao().allContacts().getValue();
         loading(false);
-        if(contacts != null){
+
             binding.ContactRecyclerView.setAdapter(this.adapter);
             binding.ContactRecyclerView.setVisibility(View.VISIBLE);
-        } else {
-            showErrorMessage();
-        }
+
     }
 
     private void showErrorMessage(){
