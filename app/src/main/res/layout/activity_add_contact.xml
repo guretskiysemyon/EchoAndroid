@@ -103,6 +103,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:text="@string/add_contact"
                 android:textColor="@color/color_text"
+                android:backgroundTint="@color/buttons"
                 android:textSize="@dimen/_13ssp"
                 app:cornerRadius="@dimen/_8sdp"
                 />

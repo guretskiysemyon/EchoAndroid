@@ -91,31 +91,4 @@ public class ContactAPI {
         });
     }
 
-    public void deleteContact(Contact contact) {
-        String tkn = "Bearer " + token;
-        Call<Void> call = webServiceAPI.deleteContact(contact.getId(),tkn);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                contactRepository.deleteInRoom(contact);
-            }
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {}
-        });
-    }
-
-
-    public void changeContact(Contact contact) {
-        String tkn = "Bearer " + token;
-        Call<Void> call = webServiceAPI.changeContact(contact.getId(),tkn, contact);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                contactRepository.changeContactInRoom(contact);
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {}
-        });
-    }
 }

@@ -1,17 +1,37 @@
 package com.echoexp4.firebase;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
+import android.os.Message;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.echoexp4.Database.AppDB;
 import com.echoexp4.R;
+import com.echoexp4.Repositories.ConnectionRepository;
+import com.echoexp4.Repositories.MessagesRepository;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+@SuppressLint("MissingFirebaseInstanceTokenRefresh")
 public class MyService extends FirebaseMessagingService {
+
+
+    private ConnectionRepository connectionRepository;
+    private MessagesRepository messagesRepository;
+
+
+    public void setConnectionRepository(ConnectionRepository connectionRepository) {
+        this.connectionRepository = connectionRepository;
+    }
+
+    public void setMessagesRepository(MessagesRepository messagesRepository) {
+        this.messagesRepository = messagesRepository;
+    }
+
     public MyService() {
     }
 
@@ -20,7 +40,6 @@ public class MyService extends FirebaseMessagingService {
 
         if (remoteMessage.getNotification() != null) {
             createNotificationChannel();
-
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1")
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentTitle(remoteMessage.getNotification().getTitle())

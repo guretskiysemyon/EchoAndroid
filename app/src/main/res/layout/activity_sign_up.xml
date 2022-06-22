@@ -139,6 +139,7 @@
                 android:layout_marginEnd="@dimen/_70sdp"
                 android:layout_marginStart="@dimen/_70sdp"
                 android:textColor="@color/color_text"
+                android:backgroundTint="@color/buttons"
                 android:textSize="@dimen/_13ssp"
                 app:cornerRadius="@dimen/_8sdp"
                 />

@@ -48,28 +48,28 @@ public abstract class AppDB extends RoomDatabase {
     }
 
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDbAsyncTask(INSTANCE).execute();
-        }
-    };
+//    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+//        @Override
+//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+//            super.onCreate(db);
+//            new PopulateDbAsyncTask(INSTANCE).execute();
+//        }
+//    };
 
-    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
-        private AllDao noteDao;
-
-        private PopulateDbAsyncTask(AppDB db) {
-            noteDao = db.allDao();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            noteDao.addContact(new Contact("Borys1","Borys", null, null,null,null));
-            noteDao.addContact(new Contact("Borys2","Borys", null, null,null,null));
-            noteDao.addContact(new Contact("Borys3","Borys", null, null,null,null));
-            return null;
-        }
-    }
+//    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
+//        private AllDao noteDao;
+//
+//        private PopulateDbAsyncTask(AppDB db) {
+//            noteDao = db.allDao();
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            noteDao.addContact(new Contact("Borys1","Borys", null, null,null,null));
+//            noteDao.addContact(new Contact("Borys2","Borys", null, null,null,null));
+//            noteDao.addContact(new Contact("Borys3","Borys", null, null,null,null));
+//            return null;
+//        }
+//    }
 
 }

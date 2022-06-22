@@ -66,6 +66,8 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
     implementation 'com.google.firebase:firebase-core:21.0.0'
+    implementation 'com.google.firebase:firebase-bom:30.1.0'
+
 
 
     //Settings

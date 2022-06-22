@@ -10,14 +10,17 @@ import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Dao.AllDao;
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
+import com.echoexp4.NotificationListener;
 import com.echoexp4.Requests.TransferRequest;
 import com.echoexp4.api.MessageAPI;
 import com.echoexp4.api.UserAPI;
+import com.echoexp4.firebase.MyService;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessagesRepository {
+public class MessagesRepository implements NotificationListener {
     private MessageListData messages;
     private AllDao dao;
     private MessageAPI api;
@@ -32,7 +35,11 @@ public class MessagesRepository {
         this.contact = contact;
         messages = new MessageListData();
         messages.setValue(dao.allMessages(this.contact.getId()));
+
+
     }
+
+
 
 
     public LiveData<List<Message>> getAllMessages() {
@@ -67,22 +74,27 @@ public class MessagesRepository {
         this.messages.setValue(dao.allMessages(contact.getId()));
     }
 
-/*
-    private static class InsertMessageAsyncTask extends AsyncTask<Message, Void, Void> {
-        private AllDao dao;
-
-        protected InsertMessageAsyncTask(AllDao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(Message... mess) {
-            dao.addMessage(mess[0]);
-            return null;
-        }
+    @Override
+    public void pullNotification() {
+        api.getMessages(contact.getId(), messages);
     }
 
-*/
+    /*
+        private static class InsertMessageAsyncTask extends AsyncTask<Message, Void, Void> {
+            private AllDao dao;
+
+            protected InsertMessageAsyncTask(AllDao dao) {
+                this.dao = dao;
+            }
+
+            @Override
+            protected Void doInBackground(Message... mess) {
+                dao.addMessage(mess[0]);
+                return null;
+            }
+        }
+
+    */
     class MessageListData extends MutableLiveData<List<Message>> {
 
         public MessageListData() {

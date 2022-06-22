@@ -10,13 +10,14 @@ import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Dao.AllDao;
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.User;
+import com.echoexp4.NotificationListener;
 import com.echoexp4.Requests.InvitationRequest;
 import com.echoexp4.api.ContactAPI;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactRepository {
+public class ContactRepository implements NotificationListener {
     private AllDao dao;
     private ContactAPI api;
     private ContactListData contacts;
@@ -49,22 +50,6 @@ public class ContactRepository {
         return dao.getUser();
     }
 
-    public void deleteContact(Contact contact) {
-        api.deleteContact(contact);
-    }
-
-    public void deleteInRoom(Contact contact){
-       dao.deleteContact(contact);
-    }
-
-    public void changeContact(Contact contact) {
-        api.changeContact( contact);
-    }
-
-    public void changeContactInRoom(Contact contact) {
-       dao.changeContact(contact);
-    }
-
     public void insertContacts(List<Contact> contacts){
         dao.insertContacts(contacts);
         this.contacts.setValue(dao.allContacts());
@@ -75,7 +60,10 @@ public class ContactRepository {
         return contacts;
     }
 
-
+    @Override
+    public void pullNotification() {
+        api.getContacts(this.contacts);
+    }
 
 
 ////////////////////////////////////////////////////////////////////

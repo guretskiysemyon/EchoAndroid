@@ -43,11 +43,6 @@ public interface WebServiceAPI {
     @POST("contacts")
     Call<Void> addContact(@Header("Authorization") String authHeader, @Body Contact contact);
 
-    @PUT("contacts/{id}")
-    Call<Void> changeContact(@Path("id") String id, @Header("Authorization") String authHeader, @Body Contact contact);
-
-    @DELETE("contacts/{id}")
-    Call<Void> deleteContact(@Path("id") String id, @Header("Authorization") String authHeader);
 
     @GET("contacts/{contactid}/messages")
     Call<List<Message>> getMessages(@Path("contactid") String contacid, @Header("Authorization") String authHeader);
