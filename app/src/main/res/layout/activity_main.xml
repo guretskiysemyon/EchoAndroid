@@ -33,14 +33,14 @@
         android:src="@drawable/ic_settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:tint="@color/white"
+        android:tint="@color/color_text"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/contacts"
-        android:textColor="@color/white"
+        android:textColor="@color/color_text"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/imageProfile"
@@ -94,10 +94,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_24sdp"
-        android:backgroundTint="@color/burgundy"
+        android:backgroundTint="@color/buttons"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_add"
-        android:tint="@color/white"
+        android:tint="@color/color_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

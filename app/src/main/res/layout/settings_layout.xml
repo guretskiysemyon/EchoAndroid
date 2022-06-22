@@ -29,7 +29,7 @@
                 android:src="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:tint="@color/white"
+                android:tint="@color/color_text"
                 />
 
             <TextView

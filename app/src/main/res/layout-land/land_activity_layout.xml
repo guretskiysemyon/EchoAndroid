@@ -59,14 +59,14 @@
                     android:src="@drawable/ic_settings"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:tint="@color/white"
+                    android:tint="@color/color_text"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/contacts"
-                    android:textColor="@color/white"
+                    android:textColor="@color/color_text"
                     android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/imageProfile"
@@ -120,10 +120,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_24sdp"
                     android:layout_marginBottom="@dimen/_24sdp"
-                    android:backgroundTint="@color/burgundy"
+                    android:backgroundTint="@color/buttons"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/ic_add"
-                    android:tint="@color/white"
+                    android:tint="@color/color_text"
                     app:fabSize="mini"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -182,7 +182,7 @@
                     android:src="@drawable/ic_close"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:tint="@color/white"
+                    android:tint="@color/color_text"
                     />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -197,7 +197,7 @@
                     android:src="@drawable/ic_info"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:tint="@color/white"
+                    android:tint="@color/color_text"
                     />
 
                 <com.makeramen.roundedimageview.RoundedImageView
@@ -221,7 +221,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/white"
+                    android:textColor="@color/color_text"
                     android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/ImageClose"
@@ -234,7 +234,7 @@
                     android:id="@+id/viewSupporter"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/burgundy"
+                    android:background="@color/buttons"
                     android:layout_marginTop="@dimen/_12sdp"
                     app:layout_constraintTop_toBottomOf="@id/ImageClose"/>
 
@@ -280,7 +280,7 @@
                         android:layout_marginLeft="@dimen/_4sdp"
                         android:padding="@dimen/_8sdp"
                         android:src="@drawable/ic_send"
-                        android:tint="@color/white"/>
+                        android:tint="@color/color_text"/>
                 </FrameLayout>
 
                 <EditText

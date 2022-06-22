@@ -28,14 +28,14 @@
             android:background="@drawable/background_icon"
             android:padding="@dimen/_6sdp"
             android:src="@drawable/ic_back"
-            android:tint="@color/white" />
+            android:tint="@color/color_text" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_40sdp"
             android:text="@string/add_contact"
-            android:textColor="@color/white"
+            android:textColor="@color/color_text"
             android:textStyle="bold" />
 
 
@@ -102,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:text="@string/add_contact"
-                android:textColor="@color/white"
+                android:textColor="@color/color_text"
                 android:textSize="@dimen/_13ssp"
                 app:cornerRadius="@dimen/_8sdp"
                 />

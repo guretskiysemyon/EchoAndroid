@@ -1,32 +1,45 @@
 package com.echoexp4.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.Preference;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.echoexp4.R;
 import com.echoexp4.SettingsFragment;
 import com.echoexp4.databinding.ActivityChatBinding;
+import com.echoexp4.databinding.SettingsLayoutBinding;
 
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private SettingsLayoutBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_layout);
+        binding = SettingsLayoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // below line is used to check if
         // frame layout is empty or not.
-        if (findViewById(R.id.container) != null) {
-            if (savedInstanceState != null) {
-                return;
-            }
-            // below line is to inflate our fragment.
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new SettingsFragment()).commit();
+        if (savedInstanceState != null) {
+            return;
         }
+        // below line is to inflate our fragment.
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new SettingsFragment()).commit();
+        setListeners();
     }
+
+    private void setListeners(){
+        binding.ImageBack.setOnClickListener(e-> {
+            Intent i  = new Intent(SettingsActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        });
+    }
+
 }
 
 

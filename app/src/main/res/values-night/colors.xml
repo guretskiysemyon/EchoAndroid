@@ -7,11 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="color_text">#FFFFFFFF</color>
     <color name="general_bg">#341454</color>
-    <color name="gray">#f1f0f2</color>
-    <color name="burgundy">#1E3B87</color>
+    <color name="input_bck">#FFFFFFFF</color>
+    <color name="buttons">#d10074</color>
     <color name="panel_color">#220C37</color>
     <color name="error_color">#750000</color>
     <color name="sent_message_color">#8F0ABE</color>
-    <color name="received_message_color">#2B1B24</color>
+    <color name="received_message_color">#FF008E</color>
 </resources>

@@ -65,10 +65,15 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.UserVi
 
         void setUserData(Contact contact){
             binding.textName.setText(contact.getName());
-            binding.textName.setTextColor(Color.parseColor("#ffffff"));
+            //binding.textName.setTextColor(Color.parseColor("#ffffff"));
             //TODO:last message
             binding.getRoot().setOnClickListener( e-> userListener.onUserClicked(contact));
             binding.imageProfile.setImageBitmap(getUserImage(contact.getImage()));
+            if (contact.getLast()!= null){
+                binding.lastMessage.setText(contact.getLast());
+                binding.lastDate.setText(contact.getLastdate());
+            }
+
 
         }
     }

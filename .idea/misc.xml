@@ -5,19 +5,25 @@
       <map>
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable-v24/background_chat_input.xml" value="0.159" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_chat_input.xml" value="0.176" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_content_bottom.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_icon.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_image.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_input.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_received_message.xml" value="0.181" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/background_sent_message.xml" value="0.1" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/ic_add.xml" value="0.176" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/ic_back.xml" value="0.176" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/ic_close.xml" value="0.176" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/ic_send.xml" value="0.168" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/drawable/ic_settings.xml" value="0.176" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout-land/land_activity_layout.xml" value="0.264" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_add_contact.xml" value="0.25" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_add_contact2.xml" value="0.18981481481481483" />
-        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_chat.xml" value="0.1" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_chat.xml" value="0.264" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_landscape.xml" value="0.25" />
-        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_log_in.xml" value="0.1" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_log_in.xml" value="0.25" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_settings.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/activity_settings2.xml" value="0.24635416666666668" />
@@ -27,10 +33,12 @@
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/borys.xml" value="0.25" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/borys2.xml" value="0.25" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/contact_item.xml" value="0.25" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/item_container_received_messages.xml" value="0.215625" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/item_container_sent_message.xml" value="0.215625" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/land_activity_layout.xml" value="0.264" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/layout/settings_layout.xml" value="0.1" />
         <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/xml/preferences.xml" value="0.1" />
-        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/xml/root_preferences.xml" value="0.1" />
+        <entry key="..\:/Users/semka/AndroidStudioProjects/EchoExp4/app/src/main/res/xml/root_preferences.xml" value="0.4" />
       </map>
     </option>
   </component>
