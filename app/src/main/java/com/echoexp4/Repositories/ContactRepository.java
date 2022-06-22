@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Dao.AllDao;
 import com.echoexp4.Database.Entities.Contact;
+import com.echoexp4.Database.Entities.User;
 import com.echoexp4.Requests.InvitationRequest;
 import com.echoexp4.api.ContactAPI;
 
@@ -42,6 +43,10 @@ public class ContactRepository {
     public void insertContactToRoom(Contact contact){
         dao.addContact(contact);
         contacts.setValue(dao.allContacts());
+    }
+
+    public User getCurrentUser(){
+        return dao.getUser();
     }
 
     public void deleteContact(Contact contact) {

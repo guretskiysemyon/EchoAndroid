@@ -36,31 +36,30 @@
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imageProfile"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_16sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
                     android:background="@drawable/background_icon"
                     android:scaleType="center"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:riv_corner_radius="@dimen/_8sdp"/>
+                    app:riv_corner_radius="@dimen/_8sdp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageSignOut"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_16sdp"
                     android:layout_marginRight="@dimen/_16sdp"
                     android:background="@drawable/background_icon"
                     android:padding="@dimen/_6sdp"
                     android:src="@drawable/ic_settings"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:tint="@color/color_text"
-                    />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -72,8 +71,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/imageProfile"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/imageProfile"
-                    />
+                    app:layout_constraintTop_toTopOf="@id/imageProfile" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -92,14 +90,14 @@
                         android:overScrollMode="never"
                         android:padding="@dimen/_20sdp"
                         android:visibility="gone"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        />
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                     <ProgressBar
                         android:id="@+id/progressBarContact"
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center" />
+
                     <TextView
                         android:id="@+id/textErrorMessage"
                         android:layout_width="match_parent"
@@ -109,11 +107,11 @@
                         android:layout_marginEnd="@dimen/_24sdp"
                         android:textColor="@color/error_color"
                         android:textSize="@dimen/_12ssp"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
 
 
                 </FrameLayout>
+
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/addContactButton"
                     android:layout_width="wrap_content"
@@ -172,8 +170,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ImageClose"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_12sdp"
@@ -187,8 +185,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ImageInfo"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_marginEnd="@dimen/_16sdp"
                     android:layout_marginLeft="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_16sdp"
@@ -202,8 +200,8 @@
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imageContactProfile"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_marginStart="@dimen/_60sdp"
                     android:layout_marginEnd="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_12sdp"
@@ -286,7 +284,7 @@
                 <EditText
                     android:id="@+id/inputMessage"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginEnd="@dimen/_8sdp"

@@ -2,6 +2,8 @@ package com.echoexp4.Activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.echoexp4.Adapters.ChatAdapter;
 import com.echoexp4.Adapters.ContactsAdapter;
 import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Entities.Contact;
@@ -19,6 +22,7 @@ import com.echoexp4.ViewModels.ContactView;
 import com.echoexp4.databinding.ActivityMainBinding;
 import com.echoexp4.utilities.Constants;
 
+import java.util.Base64;
 import java.util.List;
 
 
@@ -34,11 +38,12 @@ public class MainActivity extends AppCompatActivity implements UserListener {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         this.adapter = new ContactsAdapter( this);
 
         viewModel = new ViewModelProvider(this).get(ContactView.class);
         //viewModel = new  ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ContactView.class);
-
+        binding.imageProfile.setImageBitmap(getUserImage(viewModel.getUser().getImage()));
         viewModel.getAllContacts().observe( this , contacts -> adapter.setContacts(contacts));
         getContacts();
         setListeners();
@@ -61,6 +66,20 @@ public class MainActivity extends AppCompatActivity implements UserListener {
         });
 
 
+    }
+
+    private Bitmap getUserImage(String encodedImage){
+        if (encodedImage == null){
+            encodedImage = String.join("", ContactsAdapter.DEFAULT_AVATAR);
+        }
+        byte[] bytes;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            bytes = Base64.getDecoder().decode(encodedImage);
+        } else {
+            bytes = android.util.Base64.
+                    decode(encodedImage, android.util.Base64.DEFAULT);
+        }
+        return BitmapFactory.decodeByteArray(bytes,0, bytes.length);
     }
 
     @Override

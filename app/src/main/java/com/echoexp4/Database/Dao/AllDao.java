@@ -65,6 +65,9 @@ public interface AllDao {
     @Insert
     void addMessage(Message message);
 
+    @Transaction
+    @Query("SELECT * FROM user")
+    User getUser();
 
 
 

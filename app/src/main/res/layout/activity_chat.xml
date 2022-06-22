@@ -143,6 +143,7 @@
     <EditText
         android:id="@+id/inputMessage"
         android:layout_width="0dp"
+        android:maxLength="150"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginLeft="@dimen/_16sdp"
