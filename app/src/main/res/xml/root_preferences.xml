@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory>
+
+        <EditTextPreference
+            app:key="signature"
+            app:title="Change your name"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="reply"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_values"
+            app:key="reply"
+            app:title="@string/reply_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:key="about_settings_key"
+            app:title="Log Out"/>
+
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
