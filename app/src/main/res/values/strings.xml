@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">EchoExp2</string>
+    <string name="contacts">Contacts</string>
+    <string name="type_message">Type message</string>
+    <string name="welcome_to_echo">Welcome To Echo</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="password_validation">Password Validation</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="server">Server</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="settings">Settings</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+</resources>
