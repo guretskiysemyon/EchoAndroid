@@ -1,16 +1,12 @@
 package com.echoexp4.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.echoexp4.Database.Entities.Contact;
-import com.echoexp4.ViewModels.ContactView;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.echoexp4.databinding.ActivityAddContactBinding;
-import com.echoexp4.databinding.ActivityMainBinding;
 
 public class AddContactActivity extends AppCompatActivity {
 

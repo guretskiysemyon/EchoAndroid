@@ -6,7 +6,6 @@ import com.echoexp4.Requests.LogInRequest;
 import com.echoexp4.Requests.SignUpRequest;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -25,7 +24,6 @@ public class UserAPI extends Thread {
 
     public UserAPI(ConnectionRepository repository) {
         this.repository = repository;
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCYXoiLCJqdGkiOiIyOWY4NTgzZi02ODA1LTQ5YTAtYjRiNC02YTMyY2JkNmE0ZGIiLCJpYXQiOiIxOC4wNi4yMDIyIDE2OjMyOjE2IiwiVXNlcklkIjoiS2FyaW5hIiwiZXhwIjoxNjU1NjQxOTM2LCJpc3MiOiJFY2hvIiwiYXVkIjoiRWNobyJ9.Y9yp8a7dRwoKRqueUjHWx0_6YXe_Nv2ZNAF-NJ-FD1I";
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:7099/api/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -33,25 +31,6 @@ public class UserAPI extends Thread {
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);
     }
-
-
-    //TODO: Delete
-    public void getAll() {
-        Call<List<User>> call = webServiceAPI.getUsers();
-        call.enqueue(new Callback<List<User>>() {
-
-            @Override
-            public void onResponse(Call<List<User>> call, retrofit2.Response<List<User>> response) {
-                List<User> users = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-
-            }
-        });
-    }
-
 
 
     //TODO: get data about user

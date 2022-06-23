@@ -3,12 +3,10 @@ package com.echoexp4.Database.Dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
-import androidx.room.Update;
 
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
@@ -37,8 +35,6 @@ public interface AllDao {
     @Query("DELETE FROM CONTACTS")
     void deleteContacts();
 
-
-
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertContacts(List<Contact> contacts);
@@ -54,6 +50,10 @@ public interface AllDao {
     @Transaction
     @Insert
     void addContact(Contact contact);
+
+    @Transaction
+    @Query("UPDATE contacts SET last=:last, lastdate=:lastdate WHERE id=:contactId")
+    void updateContact(String last, String lastdate, String contactId);
 
     @Transaction
     @Insert

@@ -14,6 +14,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import com.echoexp4.Repositories.ConnectionRepository;
 import com.echoexp4.Requests.SignUpRequest;
 import com.echoexp4.databinding.ActivitySignUpBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -58,13 +61,26 @@ public class SignUpActivity extends ConnectionActivity {
 
     private void signUp(){
         loading(true);
+        SignUpRequest signUpRequest = new SignUpRequest(
+                binding.InputUsername.getText().toString(),
+                binding.InputPassword.getText().toString(),
+                binding.InputName.getText().toString(),
+                encodedImage);
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SignUpActivity.this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                signUpRequest.tokenFCM = instanceIdResult.getToken();
+                repository.SignUp(signUpRequest);
+            }
+        });
+        /*
         repository.SignUp(new SignUpRequest(
                 binding.InputUsername.getText().toString(),
                 binding.InputPassword.getText().toString(),
                 binding.InputName.getText().toString(),
                 encodedImage
         ));
-
+        */
         /*
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         HashMap<String, Object> user = new HashMap<>();

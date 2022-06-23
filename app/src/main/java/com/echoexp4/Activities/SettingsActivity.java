@@ -1,14 +1,12 @@
 package com.echoexp4.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.Preference;
-
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.echoexp4.R;
 import com.echoexp4.SettingsFragment;
-import com.echoexp4.databinding.ActivityChatBinding;
 import com.echoexp4.databinding.SettingsLayoutBinding;
 
 

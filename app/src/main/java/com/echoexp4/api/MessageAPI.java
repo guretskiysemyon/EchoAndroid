@@ -1,7 +1,5 @@
 package com.echoexp4.api;
 
-import androidx.lifecycle.MutableLiveData;
-
 import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.Repositories.MessagesRepository;
 import com.echoexp4.Requests.TransferRequest;
@@ -25,8 +23,7 @@ public class MessageAPI {
     public MessageAPI(MessagesRepository messagesRepository, String token) {
         this.token = token;
         this.messagesRepository = messagesRepository;
-        //token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCYXoiLCJqdGkiOiIyOWY4NTgzZi02ODA1LTQ5YTAtYjRiNC02YTMyY2JkNmE0ZGIiLCJpYXQiOiIxOC4wNi4yMDIyIDE2OjMyOjE2IiwiVXNlcklkIjoiS2FyaW5hIiwiZXhwIjoxNjU1NjQxOTM2LCJpc3MiOiJFY2hvIiwiYXVkIjoiRWNobyJ9.Y9yp8a7dRwoKRqueUjHWx0_6YXe_Nv2ZNAF-NJ-FD1I";
-        retrofit = new Retrofit.Builder()
+          retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:7099/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -64,7 +61,7 @@ public class MessageAPI {
                 if (response.isSuccessful()){
                     List<Message> data = addContactId(response.body(), contact);
                     messagesRepository.insertMessages(data);
-                    //messages.setValue(data);
+
                 }
             }
             @Override

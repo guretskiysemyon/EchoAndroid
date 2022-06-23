@@ -1,12 +1,8 @@
 package com.echoexp4.api;
 
-import androidx.lifecycle.MutableLiveData;
-
 import com.echoexp4.Database.Entities.Contact;
-import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.Repositories.ContactRepository;
 import com.echoexp4.Requests.InvitationRequest;
-import com.echoexp4.Requests.TransferRequest;
 
 import java.util.List;
 
@@ -45,7 +41,7 @@ public class ContactAPI {
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
                 if (response.isSuccessful()){
                     contactRepository.insertContacts(response.body());
-                    //contacts.setValue(response.body());
+
                 }
 
             }

@@ -11,6 +11,8 @@ import com.echoexp4.Database.Entities.Message;
 import com.echoexp4.databinding.ItemContainerReceivedMessagesBinding;
 import com.echoexp4.databinding.ItemContainerSentMessageBinding;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -18,6 +20,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<Message> chatMessages;
     private static final int VIEW_TYPE_SENT = 0;
     private static final int VIEW_TYPE_RECEIVED = 1;
+
 
 
     @NonNull
@@ -70,6 +73,19 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
 
+    public static String setDate(String dateStr) {
+        String inputString = dateStr;
+        SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-M-dd'T'hh:mm:ss");
+        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy/M/dd hh:mm");
+        String reformattedStr = inputString;
+        try {
+            reformattedStr = myFormat.format(fromUser.parse(inputString));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return reformattedStr;
+    }
+
     static class  SentMessageViewHolder extends RecyclerView.ViewHolder{
 
         private final ItemContainerSentMessageBinding binding;
@@ -80,7 +96,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
 
         void setData(Message chatMessage){
-            String message = chatMessage.getContent()+ "\n" + chatMessage.getCreated();
+            String message = chatMessage.getContent()+ "\n" + setDate(chatMessage.getCreated());
             binding.textMessage.setText(message);
         }
     }
@@ -95,7 +111,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
 
         void setData(Message chatMessage){
-            String message = chatMessage.getContent()+ "\n" + chatMessage.getCreated();
+            String message = chatMessage.getContent()+ "\n" + setDate(chatMessage.getCreated());
             binding.textMessage.setText(message);
         }
     }

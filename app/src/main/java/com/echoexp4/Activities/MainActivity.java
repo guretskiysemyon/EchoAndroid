@@ -8,12 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.echoexp4.Adapters.ChatAdapter;
 import com.echoexp4.Adapters.ContactsAdapter;
 import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Entities.Contact;
@@ -31,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements UserListener {
     private ActivityMainBinding binding;
     private ContactView viewModel;
     private ContactsAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements UserListener {
         });
         binding.addContactButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
-           // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivityForResult(intent, 1);
 
         });
@@ -72,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements UserListener {
 
     private Bitmap getUserImage(String encodedImage){
         if (encodedImage == null){
-            encodedImage = String.join("", ContactsAdapter.DEFAULT_AVATAR);
+            return null;
         }
         byte[] bytes;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -96,9 +93,9 @@ public class MainActivity extends AppCompatActivity implements UserListener {
             Contact contact = new Contact(username,name,null, server);
             viewModel.insertContact(contact);
 
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Contact saved", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Contact not saved", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -112,11 +109,6 @@ public class MainActivity extends AppCompatActivity implements UserListener {
             binding.ContactRecyclerView.setAdapter(this.adapter);
             binding.ContactRecyclerView.setVisibility(View.VISIBLE);
 
-    }
-
-    private void showErrorMessage(){
-        binding.textErrorMessage.setText(String.format("%s", "You have no contacts yet"));
-        binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
     private void loading(Boolean isLoading){

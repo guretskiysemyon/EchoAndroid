@@ -2,19 +2,18 @@ package com.echoexp4.Adapters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.UserListener;
-import com.echoexp4.ViewModels.ContactView;
 import com.echoexp4.databinding.ContactItemBinding;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.List;
 
@@ -67,18 +66,30 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.UserVi
 
         void setUserData(Contact contact){
             binding.textName.setText(contact.getName());
-            //binding.textName.setTextColor(Color.parseColor("#ffffff"));
-            //TODO:last message
             binding.getRoot().setOnClickListener( e-> userListener.onUserClicked(contact));
             binding.imageProfile.setImageBitmap(getUserImage(contact.getImage()));
             if (contact.getLast()!= null){
                 binding.lastMessage.setText(contact.getLast());
-                binding.lastDate.setText(contact.getLastdate());
+                binding.lastDate.setText(setDate(contact.getLastdate()));
             }
 
 
         }
     }
+
+    public static String setDate(String dateStr) {
+        String inputString = dateStr;
+        SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-M-dd'T'hh:mm:ss");
+        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy/M/dd hh:mm");
+        String reformattedStr = inputString;
+        try {
+            reformattedStr = myFormat.format(fromUser.parse(inputString));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return reformattedStr;
+    }
+
 
     private Bitmap getUserImage(String encodedImage){
         if (encodedImage == null){

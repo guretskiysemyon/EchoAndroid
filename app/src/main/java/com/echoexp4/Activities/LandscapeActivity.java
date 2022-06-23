@@ -1,10 +1,5 @@
 package com.echoexp4.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -14,16 +9,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.echoexp4.Adapters.ChatAdapter;
 import com.echoexp4.Adapters.ContactsAdapter;
 import com.echoexp4.Database.AppDB;
 import com.echoexp4.Database.Entities.Contact;
 import com.echoexp4.Database.Entities.Message;
-import com.echoexp4.Database.Entities.User;
 import com.echoexp4.UserListener;
 import com.echoexp4.ViewModels.LandscapeChatViewModel;
-import com.echoexp4.ViewModels.MessageViewModel;
-import com.echoexp4.databinding.ActivityChatBinding;
 import com.echoexp4.databinding.LandActivityLayoutBinding;
 import com.echoexp4.utilities.Constants;
 
@@ -90,8 +86,6 @@ public class LandscapeActivity extends AppCompatActivity implements UserListener
 
 
     private void sendMessage() throws InterruptedException {
-
-        //TODO: change contact name
         String contact = this.contact.getId();
         String content = binding.inputMessage.getText().toString();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
