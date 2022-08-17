@@ -2,7 +2,7 @@
 ## Welcome to Echo Messanger for Android!
 ## To strat using app you need to do next steps:
 * Clone repos 
-* Connect project with your Firebase account and save google-services.json from your firebase in your app folder
+* Project connected with project "EchoExp4New" in Firebase account (Server key and Sendler ID of this project we wrote in API) (If you you want to connect to another project in Firebase account, don't forget to save google-services.json from your firebase in your app folder).
 * Run EchoAPI that you might find in another repos
 * Run MariaDB
 * After you finished all steps, you might see the next window:
